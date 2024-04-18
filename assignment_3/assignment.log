@@ -1,0 +1,25 @@
+total 0
+18883374 -rw-rw-r-- 3 crane crane 0 Apr 13 21:01 file_a
+18883374 -rw-rw-r-- 3 crane crane 0 Apr 13 21:01 hardlink1
+18883374 -rw-rw-r-- 3 crane crane 0 Apr 13 21:01 hardlink2
+18883376 lrwxrwxrwx 1 crane crane 6 Apr 13 21:10 symlink -> file_a
+18889300 lrwxrwxrwx 1 crane crane 7 Apr 13 21:11 symlink2 -> symlink
+18889438 lrwxrwxrwx 1 crane crane 9 Apr 13 21:12 symlink_b -> ../file_b
+
+/etc/passwd
+/etc/pam.d/passwd
+/etc/passwd-
+/bin/awk
+/etc/alternatives/c++
+/etc/alternatives/shimx64.efi.signed
+/etc/alternatives/cpp
+/etc/alternatives/rlogin
+/etc/alternatives/vi
+/etc/alternatives/rsh
+/etc/alternatives/gdm-theme.gresource
+/etc/alternatives/cc
+/etc/alternatives/vim
+/etc/libreoffice/registry/main.xcd
+/etc/dictionaries-common/words
+/etc/brltty/Contraction/zh-tw.cti
+/etc/mtab

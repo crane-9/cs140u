@@ -1,5 +1,7 @@
 # Assignment 3
 
+[Contents of `q1` & `q2` here.](./assignment.log)
+
 1. I open my terminal.
 
     - I use `pwd` to confirm that `~` indicates `/home/<username>`.
