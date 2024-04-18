@@ -40,4 +40,60 @@
     - I get one result and a couple of "permission denied" messages (which I have been getting throughout this assignment, and I now realize I should have been using `sudo` for this sake).
     - I use `find -L /etc -type f -amin 30 >> ~/q2` to save the output for the assignment.
 
-3. 
+3. Command writing:
+
+    d rwx r-x r--
+    ```bash
+    chmod -R 754 dirname 
+    ```
+
+    rw- --- r--
+    ```bash
+    chmod 604 filename
+    ```
+
+    -w- rwx rw-
+    ```bash
+    chmod 276 filename
+    ```
+
+4. Numeric equivalents:
+
+    ```
+    rw-r--r--
+    644
+
+    r--r--r--
+    444
+
+    ---rwxrw-
+    076
+
+    -wxr-xrw-
+    356
+
+    rw-rw-rwx
+    667
+
+    -w-r-----
+    240
+    ```
+
+5. Unmasks:
+
+    ```
+    022
+    --- -w- -w-
+
+    777
+    rwxrwxrwx
+
+    033
+    -wx -wx -wx
+
+    077
+    --- rwx rwx
+
+    027
+    --- -w- rwx
+    ```
