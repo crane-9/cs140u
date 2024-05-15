@@ -15,9 +15,9 @@ This is a basic archival tool that archives the given directories as a .tar file
     
 USAGE: ./archive.sh [OPTIONS] [DIRECTORIES ...]
 
-ALTERNATE ACTIONS
+ACTIONS
     --help, -h : View this help menu.
-    --install : Attempts to install this script into the current user's crontab.
+    --install : Attempts to install this script as a crontab job for the current user. This installation will copy the passed arguments.
 
 PARAMETERS:
     DIRECTORY: One or more directories (or files) to backup.
@@ -26,6 +26,8 @@ OPTIONS:
     --archive, -A [ARCHIVE NAME]: The name to give the archive file.
     --directory, -d [DIRECTORY]: The output path to send the archive to. Defaults to '$HOME/backups/'
     --silent, -S : (Not recommended) Disables validating input directories as existing. Script will simply ignore non-existent paths.
+
+For further information, view README.md.
 EOL
     exit 0
 }
@@ -33,7 +35,13 @@ EOL
 
 # Installs this script into the user's crontab.
 install() {
-    (crontab -l 2>/dev/null; echo "0 12 * * * $(realpath $0)") | crontab -
+    job="0 12 * * * $(realpath $0) -d $(realpath $outputDir) ${DIR_NAMES[@]}"
+
+    if [[ $renamedArchive ]]; then
+        job+=" -A $outputName"
+    fi
+
+    (crontab -l 2>/dev/null; echo "$job") | crontab -
     exit 0
 }
 
@@ -49,10 +57,13 @@ while [[ $# -gt 0 ]]; do
             help
             ;;
         --install)
-            install
+            # Set a flag to perform install with the given arguments.
+            performInstall=1
+            shift
             ;;
         
         -A|--archive)
+            renamedArchive=1   # SEt a flag -- this ensures that the current date being the default name can continue to function for installed jobs.
             outputName=$2
             shift
             shift
@@ -78,22 +89,27 @@ while [[ $# -gt 0 ]]; do
                 exit 1
             fi
 
-            # Else, add and continue.
-            DIR_NAMES+=($1)
+            # Else, add full path (for the sake of installation) and continue.
+            DIR_NAMES+=($(realpath $1))
             shift
             ;;
     esac
 done
-
 
 # Ensure output directory exists!
 if ! [[ -d $outputDir ]]; then
     mkdir -p $outputDir 
 fi
 
+# Install the crontab job.
+if [[ $performInstall ]]; then
+    install
+fi
+
+
 # Do the backup and redirect errors to an error log.
 tar -cf "$outputDir/$outputName" ${DIR_NAMES[@]} 2>>"$outputDir/$errorFile"
 
 if [[ -f "$outputDir/$errorFile" ]]; then
-    echo "Non-fatal errors written to '$(realpath $outputDir/$errorFile)'"
+    echo "Non-fatal errors and warnings written to '$(realpath $outputDir/$errorFile)'"
 fi
