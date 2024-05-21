@@ -1,0 +1,7 @@
+PING cranepresents.dev (172.67.215.222): 56 data bytes
+64 bytes from 172.67.215.222: seq=0 ttl=57 time=18.653 ms
+64 bytes from 172.67.215.222: seq=1 ttl=57 time=19.956 ms
+
+--- cranepresents.dev ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 18.653/19.304/19.956 ms

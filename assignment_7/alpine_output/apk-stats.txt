@@ -1,0 +1,12 @@
+
+installed:
+  packages: 15
+  dirs: 102
+  files: 111
+  bytes: 8265728
+  triggers: 1
+available:
+  names: 39
+  packages: 15
+atoms:
+  num: 46
