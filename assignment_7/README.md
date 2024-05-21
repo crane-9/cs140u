@@ -18,7 +18,7 @@ sudo docker run -v testVol:/output -it alpine
 
 I played around with a few commands and the package manager, and saved the output of three commands:
 
-1. `cat /etc/os-release >> `[`/output/os-release.txt`](./alpine-output/os-release.txt)
+1. `cat /etc/os-release >> `[`/output/os-release.txt`](./alpine_output/os-release.txt)
 2. `apk stats >> `[`/output/apk-stats.txt`](./alpine_output/apk-stats.txt)
 3. `ping -w 2 cranepresents.dev >> `[`/output/ping.txt`](./alpine_output/ping.txt)
 
