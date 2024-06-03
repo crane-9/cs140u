@@ -1,0 +1,3 @@
+this is my text file.
+
+it will be delivered by a static content server.
